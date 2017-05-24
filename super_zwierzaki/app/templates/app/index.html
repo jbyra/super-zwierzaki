@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+    <h1>Karty</h1>
+{% if cards_list %}
+    <ul>
+    {% for card in cards_list %}
+        <li><a href="/app/{{ card.id }}/">Typ: {{ card.card_type }} numer: {{ card.card_number }} data: {{ card.added_date }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cards are available.</p>
+{% endif %}
+
+</body>
+</html>
+
+
