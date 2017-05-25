@@ -8,12 +8,18 @@ class User(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50, default="-")
 
+    def __str__(self):
+        return self.name
+
 class Card(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey('auth.User')
     card_type = models.ForeignKey(Category, on_delete=None)
     card_name = models.CharField(max_length=50, default="-")
     card_number = models.IntegerField()
     added_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.card_name
     
 
 

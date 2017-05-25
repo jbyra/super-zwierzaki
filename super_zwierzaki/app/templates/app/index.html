@@ -13,6 +13,14 @@
     <p>No cards are available.</p>
 {% endif %}
 
+<div>
+    <a href="{% url 'card_new' %}"><span>nowa karta</span></a>
+</div>
+<div>
+     {% block content %}
+      {% endblock %}
+</div>
+
 </body>
 </html>
 
