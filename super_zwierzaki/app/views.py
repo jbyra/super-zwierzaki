@@ -9,10 +9,10 @@ from .models import Card
 from .forms import CardForm
 
 def index(request):
-    cards_list = Card.objects.all()
+    card_list = Card.objects.all()
     template = loader.get_template('app/index.html')
     context = {
-        'cards_list' : cards_list,
+        'card_list' : card_list,
     }
     return HttpResponse(template.render(context, request))
 
