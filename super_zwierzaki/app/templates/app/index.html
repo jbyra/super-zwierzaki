@@ -35,12 +35,12 @@
     </div>
     <div class="container">
         <div class="card-columns">
-            {% if cards_list %}
+            {% if card_list %}
             {% for card in card_list %}
             <div class="card">
                 <div class="card-block">
-                    <h2 class="card-title">{{ card.name }}</h2>
-                    <p class="card-text">To jest opis tej karty. Gdy jest długi, to fajnie to wygląda. Alternatywnie, można dodać do karty obrazek. <span class="badge badge-default">{{ card.card_type }}</span></p>
+                    <h2 class="card-title">{{ card.card_name }}</h2>
+                    <p class="card-text">To jest opis tej karty. Gdy jest długi, to fajnie to wygląda. Alternatywnie, można dodać do karty obrazek. <span class="badge badge-default">{{ card.get_card_type_display }}</span></p>
                 </div>
                 <div class="card-footer text-muted d-flex flex-wrap justify-content-between align-items-center">
                     Dodano {{ card.added_date }} <a href="#">Edytuj</a> <a href="#">Usuń</a>
