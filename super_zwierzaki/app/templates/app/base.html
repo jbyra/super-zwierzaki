@@ -15,6 +15,7 @@
      <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
         <a class="navbar-brand" href="{% url 'index' %}">Super Zwierzaki</a>
         <div class="collapse navbar-collapse" id="navbarToggler">
+            {% if user.is_authenticated %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Moja kolekcja</a>
@@ -23,9 +24,11 @@
                     <a class="nav-link" href="#">Wyszukiwarka</a>
                 </li>
             </ul>
+             
             <div class="btn-group">
                 <a href="#" class="btn btn-outline-secondary">Ustawienia</a><a href="{% url 'logout' %}" class="btn btn-outline-secondary">logout</a>
             </div>
+            {% endif %}
         </div>
     </nav>
     {% if user.is_authenticated %}
