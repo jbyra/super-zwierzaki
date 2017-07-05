@@ -3,6 +3,13 @@
 
 {% block content %}
  {% if user.is_authenticated %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Moja kolekcja</h1>
+            <p>Hi {{ user.username }}!</p>
+            <p>Ta strona przedstawia karty, które aktualnie posiadasz.</p>Aby zmodyfikować informacje o aktualnie posiadanych przez Ciebie kartach, skorzystaj z odnośników znajdujących się u dołu karty. Zawartość swojej kolekcji możesz zmodyfikować również w <a href="#">Ustawieniach</a>.
+        </div>
+    </div>
     <div class="container">
         <div class="card-columns">
             {% if card_list %}
