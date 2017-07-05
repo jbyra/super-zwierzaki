@@ -20,6 +20,8 @@
     {{ form.as_p }}
     <button type="submit">Login</button>
   </form>
+  <p><strong>-- OR --</strong></p>
+   <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
 {% endblock %}
 
 </body>

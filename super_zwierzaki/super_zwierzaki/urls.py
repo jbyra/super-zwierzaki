@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('app.urls')),
     url(r'^login/$', auth_views.login, {'template_name': 'app/login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'template_name': 'app/logout.html'}, name='logout')
+    url(r'^logout/$', auth_views.logout, {'template_name': 'app/logout.html'}, name='logout'),
+    url(r'^oauth/', include('social_django.urls', namespace='social'))
 ]
