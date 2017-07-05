@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 
 from django.http import HttpResponse
 from django.template import loader
@@ -24,7 +26,21 @@ def card_new(request):
             card.owner = request.user
             card.added_date = timezone.now()
             card.save()
-            return redirect('ok')
+            return redirect('index')
     else:
         form = CardForm()
     return render(request, 'app/card_edit.html', {'form': form})
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'app/signup.html', {'form': form})
