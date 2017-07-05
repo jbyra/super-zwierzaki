@@ -1,0 +1,2 @@
+django-cors-middleware
+social-auth-app-django

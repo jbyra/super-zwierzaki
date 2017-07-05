@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 from social_django.models import UserSocialAuth
 
@@ -15,6 +15,8 @@ from django.utils import timezone
 
 from .models import Card
 from .forms import CardForm
+from .forms import SignUpForm
+
 
 @login_required
 def index(request):
@@ -41,7 +43,7 @@ def card_new(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -50,7 +52,7 @@ def signup(request):
             login(request, user)
             return redirect('index')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'app/signup.html', {'form': form})
 
 @login_required
@@ -64,7 +66,7 @@ def settings(request):
 
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
-    return render(request, 'app/settings.html', {
+    return render(request, 'core/settings.html', {
         'facebook_login': facebook_login,
         'can_disconnect': can_disconnect
     })
