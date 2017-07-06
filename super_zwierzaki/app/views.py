@@ -66,7 +66,7 @@ def settings(request):
 
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
-    return render(request, 'core/settings.html', {
+    return render(request, 'app/settings.html', {
         'facebook_login': facebook_login,
         'can_disconnect': can_disconnect
     })
